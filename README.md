@@ -56,32 +56,34 @@ python true_paper_ssd.py
 
 ### 3. Setup and Run
 ```bash
-# Interactive setup with auto-download option (recommended)
-python brain_tumor_demo.py
 
-# Quick dataset validation and setup
-python check_dataset.py
+# Run the main classification algorithm
+python brain_tumor_ssd.py
 
-# Test KaggleHub download functionality
-python test_kagglehub.py
+# Generate classification report and analysis
+python classification_report.py
 
-# Or run directly (will attempt auto-download first)
-python true_paper_ssd.py
+# View results and visualizations
+python show_results.py
+
+# Setup and configuration
+python setup.py
+
 ```
 
 ### 4. Expected Output
 ```
-🧠 BRAIN TUMOR MRI CLASSIFICATION
-📁 Loading Brain Tumor MRI Dataset...
+ BRAIN TUMOR MRI CLASSIFICATION
+ Loading Brain Tumor MRI Dataset...
    Training samples: 2,870
    Testing samples: 394
    Features per sample: 50,176
    Classes: 4
 
-🚀 Running OPTIMIZED TRUE Paper-Faithful SSD...
-⏱️ Runtime: 23.4 minutes
-📊 Balanced Accuracy: 0.8734 (87.34%)
-🎯 Selected Features: 127 (395x reduction)
+ Running OPTIMIZED TRUE Paper-Faithful SSD...
+ Runtime: 23.4 minutes
+ Balanced Accuracy: 0.8734 (87.34%)
+ Selected Features: 127 (395x reduction)
 ```
 
 ## Dataset Structure
@@ -247,23 +249,23 @@ use_class_weights=True  # Handle class imbalance (recommended for medical)
 ### Dataset Issues
 ```bash
 # No images found (n_samples=0)
-❌ ValueError: With n_samples=0, test_size=0.2... the resulting train set will be empty
-✅ Solutions:
+ ValueError: With n_samples=0, test_size=0.2... the resulting train set will be empty
+ Solutions:
    1. Run: python check_dataset.py (validates setup)
    2. Use auto-download: load_brain_tumor_dataset(auto_download=True)
    3. Check dataset path and folder structure
    4. Verify image formats (jpg, png, bmp, tiff supported)
 
 # Path not found
-❌ Dataset path not found: C:\path\to\brain-tumor-mri-dataset  
-✅ Solutions:
+ Dataset path not found: C:\path\to\brain-tumor-mri-dataset  
+ Solutions:
    1. Run: python check_dataset.py
    2. Update path in true_paper_ssd.py 
    3. Use: python brain_tumor_demo.py for guided setup
 
 # Missing folders  
-❌ Missing folders: Training/glioma_tumor
-✅ Solutions:
+ Missing folders: Training/glioma_tumor
+ Solutions:
    1. Check dataset extraction completeness
    2. Verify folder structure matches expected format
    3. Run diagnosis: python check_dataset.py
@@ -272,8 +274,8 @@ use_class_weights=True  # Handle class imbalance (recommended for medical)
 ### Memory Issues
 ```bash
 # Out of memory
-❌ CUDA out of memory
-✅ Solutions:
+ CUDA out of memory
+ Solutions:
    - Reduce swarm_size to 15-20
    - Use smaller image size (128×128)
    - Close other GPU applications
@@ -282,8 +284,8 @@ use_class_weights=True  # Handle class imbalance (recommended for medical)
 ### Performance Issues
 ```bash
 # Slow iterations
-⚠️ Iteration time >30 seconds
-✅ Solutions:
+ Iteration time >30 seconds
+ Solutions:
    - Enable GPU acceleration (install CuPy)
    - Reduce feature dimensions
    - Disable ensemble learning
